@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>HIDEOUT — Hide & Seek</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="game"></div>
+<div id="menu" class="panel">
+  <div class="brand"><span class="brand-icon">✦</span><div><h1>HIDEOUT</h1><small>THE ULTIMATE HIDE & SEEK</small></div></div>
+  <p class="tagline">Find your spot. Stay unseen. Outsmart everyone.</p>
+  <label>PLAYER NAME</label><input id="name" maxlength="16" value="Player" autocomplete="off">
+  <button id="create" class="primary">CREATE ROOM</button>
+  <div class="join-row"><input id="roomCode" maxlength="4" placeholder="ROOM CODE"><button id="join">JOIN</button></div>
+  <div id="menuError" class="error"></div>
+  <div class="how">2–12 PLAYERS <span>•</span> 5 MIN ROUND <span>•</span> 30 SEC HIDE TIME</div>
+</div>
+<div id="lobby" class="panel hidden">
+  <div class="topline"><span class="eyebrow">WAITING ROOM</span><span id="roomLabel" class="room-code">----</span></div>
+  <h2>Get ready to play</h2><p class="muted">Share this room code with your friends.</p>
+  <div class="character-row">
+    <button data-character="mint" class="character selected">🟢<small>MINT</small></button>
+    <button data-character="coral" class="character">🟠<small>CORAL</small></button>
+    <button data-character="violet" class="character">🟣<small>VIOLET</small></button>
+    <button data-character="sun" class="character">🟡<small>SUN</small></button>
+  </div>
+  <div class="players-head"><b>PLAYERS</b><span id="playerCount">0/12</span></div>
+  <div id="playerList" class="player-list"></div>
+  <button id="start" class="primary">START GAME</button>
+  <p id="hostHint" class="muted center">Only the room host can start the game.</p>
+  <button id="back" class="text-button">LEAVE ROOM</button>
+</div>
+<div id="hud" class="hidden">
+  <div class="hud-top"><div class="role-pill" id="role">HIDER</div><div class="timer" id="timer">05:00</div><div class="counter" id="counter">1 / 2</div></div>
+  <div class="objective" id="objective">Find a hiding spot!</div>
+  <div class="hud-bottom"><div class="hint">WASD / ARROWS · MOVE</div><button id="chatToggle">CHAT</button></div>
+</div>
+<div id="chatBox" class="chat-box hidden"><div id="chatMessages"></div><form id="chatForm"><input id="chatInput" maxlength="160" placeholder="Say something..."><button>SEND</button></form></div>
+<div id="result" class="panel hidden"><div class="result-icon">🏆</div><h2 id="resultTitle">HIDERS WIN!</h2><p id="resultText">Great round.</p><div id="scores"></div><button id="continue" class="primary">BACK TO LOBBY</button></div>
+<div id="mobileControls" class="hidden">
+  <div class="dpad"><button data-dir="up">▲</button><div><button data-dir="left">◀</button><button data-dir="down">▼</button><button data-dir="right">▶</button></div></div>
+  <button id="runBtn" class="run-btn">RUN</button>
+</div>
+<div id="toast"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script type="module" src="game.js"></script>
+</body></html>
